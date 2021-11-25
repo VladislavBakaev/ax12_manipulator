@@ -1,0 +1,10 @@
+<launch>
+	<group ns="angle_robot">
+		<include file="$(find arm_controll_s)/launch/arms.launch">
+			<arg name="manip_name" value="angle"/>
+                        <arg name="gripper_enable" value="true"/>
+		</include>	
+		<node name = "main_node_to_point_control" pkg = "angle_s_arm_pkg" type = "main_to_point_node.py" output = "screen"/>
+	</group>
+</launch>
+
