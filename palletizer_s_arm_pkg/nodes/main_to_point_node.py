@@ -9,8 +9,9 @@ from math import sqrt
 
 class RobotControll():
     def __init__(self):
-        rospy.Service('/cmd_point', point_cmd, self.moveToPointCallback)
         rospy.Subscriber('/joint_states', JointState, self.jointStateCb)
+        rospy.sleep(3.0)
+        rospy.Service('/cmd_point', point_cmd, self.moveToPointCallback)
         self.publish_joint_state = rospy.Publisher('/cmd_joints', JointState, queue_size=10)
         self.current_joint_state = JointState()
         self.k_vel = 1.5

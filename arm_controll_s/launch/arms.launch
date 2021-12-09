@@ -1,8 +1,10 @@
 <launch>
 	<arg name="manip_name"       default="angle"/>
 	<arg name="gripper_enable"	 default="true"/>
+        <arg name="end_eff_id"       default="6"/>
 	<node pkg="arm_controll_s" type="arm_controll_s_node" name="arm_control" output="screen">
 		<param name="manipulator_type" type="string" value="$(arg manip_name)"/>
 		<param name="gripper" type="bool" value="$(arg gripper_enable)"/>
+		<param name="end_eff_id" type="int" value="$(arg end_eff_id)"/>
 	</node>
 </launch>

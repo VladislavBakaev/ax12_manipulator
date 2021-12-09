@@ -29,7 +29,7 @@ def set_vacuum(msg):
 
 if __name__=="__main__":
     global port
-    port = serial.Serial("/dev/ttyS1", baudrate=115200, timeout=1.0)
+    port = serial.Serial("/dev/ttyS1", baudrate=115200)
     rospy.init_node('vacuum_and_button')
     thread.start_new_thread(read_button,())
     rospy.Service('/vacuum',SetBool,set_vacuum)

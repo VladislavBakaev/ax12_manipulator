@@ -2,10 +2,12 @@
 	<group ns="palletizer_robot">
 		<include file="$(find arm_controll_s)/launch/arms.launch">
 			<arg name="manip_name" value="palletizer"/>
-                        <arg name="gripper_enable" value="false"/>
+                        <arg name="gripper_enable" value="true"/>
 		</include>
 		<node pkg = "palletizer_s_arm_pkg" type = "vacuum_and_button.py" name = "vacuum_and_button" output = "screen"/>
 		<node name="main_to_point_node" pkg="palletizer_s_arm_pkg" type ="main_to_point_node.py" output = "screen"/>
+		<node pkg = "palletizer_s_arm_pkg" type = "demonstration_node.py" name="demonstration_node" output="screen"/>
+                <node pkg = "palletizer_s_arm_pkg" type = "gripper_node.py" name="gripper_node" output="screen"/>
 	</group>
 </launch>
 

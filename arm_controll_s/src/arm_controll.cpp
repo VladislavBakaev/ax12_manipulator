@@ -347,6 +347,7 @@ int main(int argc, char **argv){
 
     std::string manipulator_type;
     bool gripper_enable;
+    int end_eff_id;
 
     std::vector<std::string> keys;
     nh.getParamNames(keys);
@@ -358,10 +359,14 @@ int main(int argc, char **argv){
          if(keys[i].find("gripper") != std::string::npos){
              ros::param::get(keys[i], gripper_enable);
          }
+         if(keys[i].find("end_eff_id") != std::string::npos){
+             ros::param::get(keys[i], end_eff_id);
+         }
     }        
 
     ros::param::get("manipulator_type", manipulator_type);
     ros::param::get("gripper", gripper_enable);
+    ros::param::get("end_eff_id", end_eff_id);
 
     Manipulator manipulator;
     Gripper gripper;
@@ -375,7 +380,7 @@ int main(int argc, char **argv){
     }
 
     if (gripper_enable){
-        gripper = Gripper(6, 50, &nh);
+        gripper = Gripper(end_eff_id, 50, &nh);
         gripper.gripper_subscriber = nh.subscribe<std_msgs::Bool>("/end_eff_cmd", 10, &Gripper::messageGripperCmdCallback, &gripper);
     }
     // std::cout<<manipulator.DXL_COUNT<<std::endl;
