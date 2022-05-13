@@ -30,7 +30,7 @@ class RobotControll():
         x,y,z = self.parseMsg(msg)
         roboticArm = RoboticArm()
         avail_joints_state, goal_joint_state = roboticArm.InversProblem(x,y,z, 0.0)
-
+        goal_joint_state[1]-=1.57
         if (not avail_joints_state):
             return point_cmdResponse(False)
         else:

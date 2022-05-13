@@ -113,6 +113,8 @@ class Manipulator: public DynamixelMethods{
                 goal_position[i] = present_position_[i];
                 goal_velocity[i] = present_velocity_[i];
                 dxl_id[i] = (uint8_t)dxl_id_[i];
+                ROS_INFO_STREAM(dxl_id[i]);
+                ROS_INFO_STREAM(dxl_id_[i]);
                 disable_flag = false;
                 joint_state_msg.position.resize(DXL_COUNT);
                 joint_state_msg.velocity.resize(DXL_COUNT);
@@ -322,6 +324,7 @@ class Gripper: public DynamixelMethods{
 
 Manipulator& setManipulator(std::string manipulator_type,ros::NodeHandle * nh){
     Manipulator * manipulator = 0;
+    ROS_INFO_STREAM(manipulator_type);
     
     if(manipulator_type == "palletizer"){
         int DXL_COUNT = 4;
@@ -345,9 +348,9 @@ int main(int argc, char **argv){
     ros::init(argc,argv, "Dxl_Arm");
     ros::NodeHandle nh;
 
-    std::string manipulator_type;
-    bool gripper_enable;
-    int end_eff_id;
+    std::string manipulator_type = "angle";
+    bool gripper_enable = true;
+    int end_eff_id = 6;
 
     std::vector<std::string> keys;
     nh.getParamNames(keys);

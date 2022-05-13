@@ -1,12 +1,13 @@
 <launch>
+        <arg name="gripper_enable"	 default="true"/>
 	<group ns="angle_robot">
 		<include file="$(find arm_controll_s)/launch/arms.launch">
 			<arg name="manip_name" value="angle"/>
-                        <arg name="gripper_enable" value="true"/>
+                        <arg name="gripper_enable" value="$(arg gripper_enable)"/>
 		</include>	
 		<node name = "main_node_to_point_control" pkg = "angle_s_arm_pkg" type = "main_to_point_node.py" output = "screen"/>
                 <node name = "gripper_node" pkg="angle_s_arm_pkg" type="gripper_node.py" output="screen"/>
-                <node name = "demonstration" pkg="angle_s_arm_pkg" type="demonstration_node.py" output="screen"/>
+                <node pkg = "angle_s_arm_pkg" type = "vacuum_and_button.py" name = "vacuum_and_button" output = "screen"/>
 	</group>
 </launch>
 

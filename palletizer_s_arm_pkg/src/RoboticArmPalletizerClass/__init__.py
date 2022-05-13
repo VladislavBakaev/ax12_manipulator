@@ -7,9 +7,9 @@ class RoboticArm:
         self.__l2 = 0
         self.__l3 = 140
         self.__l4 = 140
-        self.__l5 = 50
-        self.__l6 = 50
-        self.__l7 = 6.0
+        self.__l5 = 100
+        self.__l6 = 30
+        self.__l7 = -6.0
 
     def InversProblem(self,X,Y,Z,pitch = 0):
         l1 = self.__l1
@@ -42,7 +42,7 @@ class RoboticArm:
             
             alpha3 = gamma1 - alpha2
 
-            q = (alpha1,alpha2,-(alpha3-pi/2),pitch)
+            q = [alpha1,alpha2,-(alpha3-pi/2),pitch]
 
             q_max = max(list(map(abs, q)))
             if q_max > 2.6:
